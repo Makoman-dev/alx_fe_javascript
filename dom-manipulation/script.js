@@ -1,5 +1,7 @@
 const quoteDisplay = document.getElementById('quoteDisplay');
+const newQuoteButton = document.getElementById('newQuote');
 const addQuoteBtn = document.getElementById('addQuoteBtn');
+const addQuoteForm = document.getElementById('addQuoteForm');
 const newQuoteText = document.getElementById('newQuoteText');
 const newQuoteCategory = document.getElementById('newQuoteCategory');
 
@@ -11,35 +13,25 @@ let quotes = [
 function showRandomQuote() {
   const randomIndex = Math.floor(Math.random() * quotes.length);
   const randomQuote = quotes[randomIndex];
-  quoteDisplay.innerHTML = `"${randomQuote.text}"   
- - ${randomQuote.author}`;
+  quoteDisplay.innerHTML = `"${randomQuote.text}" - ${randomQuote.author}`;
+;
 }
 
-function addQuote() {
+function createAddQuoteForm() {
   const newQuote = {
     text: newQuoteText.value,
     category: newQuoteCategory.value
   };
   quotes.push(newQuote);
-
-  // Create a new div element to hold the quote
-  const newQuoteDiv = document.createElement('div');
-
-  // Create a p element for the quote text
-  const quoteText = document.createElement('p');
-  quoteText.innerHTML = `"${newQuote.text}"`;
-  newQuoteDiv.appendChild(quoteText);
-
-  // Create a p element for the author
-  const quoteAuthor = document.createElement('p');
-  quoteAuthor.textContent = `- ${newQuote.author}`;
-  newQuoteDiv.appendChild(quoteAuthor);
-
-  // Append the new div to the quoteDisplay
-  quoteDisplay.appendChild(newQuoteDiv);
-
   newQuoteText.value = '';
   newQuoteCategory.value = '';
+  toggleForm();
+  showRandomQuote();
 }
 
-addQuoteBtn.addEventListener('click', addQuote);
+function toggleForm() {
+  addQuoteForm.style.display = addQuoteForm.style.display === 'none' ? 'block' : 'none';
+}
+
+newQuoteButton.addEventListener('click', showRandomQuote);
+addQuoteBtn.addEventListener('click', toggleForm);
