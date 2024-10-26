@@ -35,3 +35,5 @@ function toggleForm() {
 
 newQuoteButton.addEventListener('click', showRandomQuote);
 addQuoteBtn.addEventListener('click', toggleForm);
+
+createElement, appendChild
