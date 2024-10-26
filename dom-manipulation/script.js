@@ -53,7 +53,7 @@ function getLastViewedQuote() {
 }
 
 // Function to export quotes as JSON
-function exportQuotesToJson() {
+function exportToJsonFile() {
   const jsonData = JSON.stringify(quotes);
   const blob = new Blob([jsonData], { type: 'application/json' });
   const url = URL.createObjectURL(blob);
