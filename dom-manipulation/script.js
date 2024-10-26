@@ -161,3 +161,4 @@ fetchQuotesFromServer
 map
 ["method", "POST", "headers", "Content-Type"]
 syncQuotes
+["Quotes synced with server!"]
