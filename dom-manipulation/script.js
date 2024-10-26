@@ -156,5 +156,6 @@ function fetchServerData() {
 
 // Periodically fetch data (adjust interval as needed)
 setInterval(fetchServerData, 60000); // Fetch every minute
+fetchQuotesFromServer
 
 map
