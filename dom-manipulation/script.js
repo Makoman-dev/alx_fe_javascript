@@ -121,3 +121,5 @@ addQuoteBtn.addEventListener('click', addQuote);
 // Optional: Load last viewed quote index from session storage
 getLastViewedQuote();
 // ... (show last viewed quote if desired)
+
+map
