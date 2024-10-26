@@ -160,3 +160,4 @@ fetchQuotesFromServer
 "await", "async"
 map
 ["method", "POST", "headers", "Content-Type"]
+syncQuotes
