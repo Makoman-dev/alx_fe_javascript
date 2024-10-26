@@ -122,4 +122,39 @@ addQuoteBtn.addEventListener('click', addQuote);
 getLastViewedQuote();
 // ... (show last viewed quote if desired)
 
+const serverUrl = 'https://jsonplaceholder.typicode.com/posts';
+
+function fetchServerData() {
+  fetch(serverUrl)
+    .then(response => response.json())
+    .then(serverQuotes => {
+      // Simulate conflict resolution: prioritize server data
+      serverQuotes.forEach(serverQuote => {
+        const existingQuote = quotes.find(quote => quote.id === serverQuote.id);
+        if (existingQuote) {
+          // Update existing quote with server data
+          existingQuote.text = serverQuote.title;
+          existingQuote.author = serverQuote.body;
+        } else {
+          // Add new quote from server
+          quotes.push({
+            text: serverQuote.title,
+            author: serverQuote.body,
+            id: serverQuote.id // Assuming a unique ID for each quote
+          });
+        }
+      });
+
+      saveQuotes();
+      showRandomQuote();
+    })
+    .catch(error => {
+      console.error('Error fetching data:', error);
+      // Handle error, e.g., display a notification to the user
+    });
+}
+
+// Periodically fetch data (adjust interval as needed)
+setInterval(fetchServerData, 60000); // Fetch every minute
+
 map
