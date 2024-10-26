@@ -64,7 +64,42 @@ function exportToJsonFile() {
   link.click();
   URL.revokeObjectURL(url); // Revoke temporary URL
 }
-
+function populateCategories() {
+    const uniqueCategories = new Set();
+    quotes.forEach(quote => {
+      uniqueCategories.add(quote.category);
+    });
+  
+    const categoryFilter = document.getElementById('categoryFilter');
+    uniqueCategories.forEach(category => {
+      const option = document.createElement('option');
+      option.value = category;
+      option.textContent   
+   = category;
+      categoryFilter.appendChild(option);
+    });
+  
+    // Load the last selected category from local storage
+    const lastSelectedCategory = localStorage.getItem('lastSelectedCategory');
+    if (lastSelectedCategory) {
+      categoryFilter.value = lastSelectedCategory;
+      filterQuotes();
+    }
+  }
+  
+  // Function to filter quotes based on the selected category
+  function filterQuotes() {
+    const selectedCategory = categoryFilter.value;
+    const filteredQuotes = quotes.filter(quote => {
+      return selectedCategory === 'all' || quote.category === selectedCategory;
+    });
+  
+    // Update the quote display with filtered quotes
+    // ... (similar to showRandomQuote, but iterate through filteredQuotes)
+  
+    // Save the selected category to local storage
+    localStorage.setItem('lastSelectedCategory', selectedCategory);
+  }
 function importFromJsonFile(event) {
   const fileReader = new FileReader();
   fileReader.onload = function(event) {
