@@ -159,3 +159,4 @@ setInterval(fetchServerData, 60000); // Fetch every minute
 fetchQuotesFromServer
 "await", "async"
 map
+["method", "POST", "headers", "Content-Type"]
